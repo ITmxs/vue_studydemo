@@ -696,7 +696,7 @@ exports.push([module.i, "body {\r\n  /*background-color: red;*/\r\n  background:
 "use strict";
 
 
-module.exports = function escape(url) {
+module.exports = function escape(url, needQuotes) {
   if (typeof url !== 'string') {
     return url;
   } // If url is already wrapped in quotes, remove them
@@ -708,7 +708,7 @@ module.exports = function escape(url) {
   // See https://drafts.csswg.org/css-values-3/#urls
 
 
-  if (/["'() \t\n]/.test(url)) {
+  if (/["'() \t\n]/.test(url) || needQuotes) {
     return '"' + url.replace(/"/g, '\\"').replace(/\n/g, '\\n') + '"';
   }
 
